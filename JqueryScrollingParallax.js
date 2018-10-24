@@ -117,7 +117,11 @@
 		//  Output: 0.55
 		var amount = yDistance / (elementHeight + windowHeight);
 
-		var modifier = (properties.y_from > properties.y_to) ? -1 : 1
+		if ((properties.y_from < 0 && properties.y_to < 0) || (properties.y_from > 0 && properties.y_to > 0)) {
+			var modifier = 1
+		} else {
+			var modifier = (properties.y_from > properties.y_to) ? -1 : 1
+		}
 
 		return {amount:amount, modifier:modifier, y_from:properties.y_from};
 
