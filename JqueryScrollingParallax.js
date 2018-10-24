@@ -45,11 +45,11 @@
 	}
 
 	function getScrollAnimationProperties(element) {
-		var elementProperties = element.data("js-scroll-animation");
-		var x_from = elementProperties.translateFrom.large[0];
-		var y_from = elementProperties.translateFrom.large[1];
-		var x_to = elementProperties.translateTo.large[0];
-		var y_to = elementProperties.translateTo.large[1];
+	    var elementProperties = element.data("js-scroll-animation"),
+            x_from = elementProperties.translateFrom.large[0],
+            y_from = elementProperties.translateFrom.large[1],
+            x_to = elementProperties.translateTo.large[0],
+            y_to = elementProperties.translateTo.large[1];
 
 		return {
 			x_from:x_from, 
@@ -66,15 +66,14 @@
 	Utils.prototype = {
 	    constructor: Utils,
 	    isElementInView: function (element, fullyInView) {
-	        var pageTop = $(window).scrollTop();
-	        var pageBottom = pageTop + $(window).height();
-	        var elementTop = $(element).offset().top;
-	        var elementBottom = elementTop + $(element).height();
+	        var pageTop = $(window).scrollTop(),
+                pageBottom = pageTop + $(window).height(),
+                elementTop = $(element).offset().top,
+                elementBottom = elementTop + $(element).height(),
+                scrollAmount = getScrollAmount(element);
 
 	        // Calculate the scroll ration of the element
-	        var scrollAmount = getScrollAmount(element);
-
-					var ratio = (scrollAmount.y_from + (((pageBottom - elementTop) * scrollAmount.amount) * scrollAmount.modifier));
+			var ratio = (scrollAmount.y_from + (((pageBottom - elementTop) * scrollAmount.amount) * scrollAmount.modifier));
 
 	        if (fullyInView === true) {
 	            return {
